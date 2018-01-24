@@ -1,0 +1,36 @@
+package cat.uab.nit.NITCodec.coder.dictionary;
+
+import java.io.BufferedReader;
+
+import cat.uab.nit.NITCodec.coder.dictionary.model.LZObject;
+
+public class LZ77Algorithm {
+
+	public static String readDictionary(String path){
+	  	//Read our dictionary and store it as string.
+		try{
+	  	String static_dictionary="";
+	  	String red_line="";
+	  	FileReader f = new FileReader(path);
+	  	BufferedReader b = new BufferedReader(f);
+	  	
+	  	while((red_line = b.readLine())!=null) {
+	  		static_dictionary+=red_line;
+	  	}
+	  	b.close();
+	  	return static_dictionary;
+		}
+		catch(Exception e){
+			System.out.print(e.getMessage());
+			return "";
+		}
+		
+		private static void addingSlidingWindow(String newEntry) {
+	  if(mSlidingBuffer.length() + newEntry.length() > DEFAULT_SLIDING_WINDOW_SIZE) {
+	    int difference = DEFAULT_SLIDING_WINDOW_SIZE - (mSlidingBuffer.length() + newEntry.length());
+	    if(difference > 0)
+	      mSlidingBuffer = mSlidingBuffer.delete(0, difference -1);
+	    mSlidingBuffer.append(newEntry);
+	  }
+	}
+} 
