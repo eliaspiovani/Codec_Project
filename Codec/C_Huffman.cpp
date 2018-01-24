@@ -327,6 +327,7 @@ bool WriteOutput(const int& count, const int& plHSize, const int& charHSize)
     output.write(&charSize, 1);
     output << '#';
     
+    //call function to write the encoded huffman tree generated for position/length and nextChar
     writeHT(EncodedHTree01, output);
     writeHT(EncodedHTree02, output);
     
