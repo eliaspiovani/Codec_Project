@@ -6,6 +6,7 @@ bool GetDict(string *dict, const int fixedDictLength);
 bool CompressionLZ77(const int fixedDictLength);
 bool DecompressionLZ77(const int fixedDictLength);
 bool C_Huffman();
+bool D_Huffman();
 
 int main() {
     const int fixedDictLength = 99;
@@ -30,12 +31,16 @@ int main() {
 //    }
     
     //Huffman compression
-    if (!C_Huffman())
-    {
-        return 400;
-    }
+//    if (!C_Huffman())
+//    {
+//        return 400;
+//    }
     
     //Huffman decompression
+    if (!D_Huffman())
+    {
+        return 500;
+    }
     
 //    if (!DecompressionLZ77(fixedDictLength))
 //    {

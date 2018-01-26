@@ -12,6 +12,7 @@
 		2D3402671FE43994002399CA /* CompressionLZ77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D3402661FE43994002399CA /* CompressionLZ77.cpp */; };
 		2D3402691FE43DC2002399CA /* GetDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D3402681FE43DC2002399CA /* GetDictionary.cpp */; };
 		2D34026B1FE55AD1002399CA /* DecompressionLZ77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D34026A1FE55AD1002399CA /* DecompressionLZ77.cpp */; };
+		2D3BCB84201A1A0A00F38A4C /* D_Huffman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D3BCB83201A1A0A00F38A4C /* D_Huffman.cpp */; };
 		2D778B8F1FE70E8E0058F109 /* C_Huffman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D778B8E1FE70E8E0058F109 /* C_Huffman.cpp */; };
 		2D778B931FE71F190058F109 /* OpenFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D778B921FE71F190058F109 /* OpenFile.cpp */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		2D3402661FE43994002399CA /* CompressionLZ77.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CompressionLZ77.cpp; sourceTree = "<group>"; };
 		2D3402681FE43DC2002399CA /* GetDictionary.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GetDictionary.cpp; sourceTree = "<group>"; };
 		2D34026A1FE55AD1002399CA /* DecompressionLZ77.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DecompressionLZ77.cpp; sourceTree = "<group>"; };
+		2D3BCB83201A1A0A00F38A4C /* D_Huffman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = D_Huffman.cpp; sourceTree = "<group>"; };
 		2D778B8E1FE70E8E0058F109 /* C_Huffman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = C_Huffman.cpp; sourceTree = "<group>"; };
 		2D778B921FE71F190058F109 /* OpenFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OpenFile.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 				2D3402661FE43994002399CA /* CompressionLZ77.cpp */,
 				2D34026A1FE55AD1002399CA /* DecompressionLZ77.cpp */,
 				2D778B8E1FE70E8E0058F109 /* C_Huffman.cpp */,
+				2D3BCB83201A1A0A00F38A4C /* D_Huffman.cpp */,
 				2D778B921FE71F190058F109 /* OpenFile.cpp */,
 			);
 			path = Codec;
@@ -153,6 +156,7 @@
 				2D34026B1FE55AD1002399CA /* DecompressionLZ77.cpp in Sources */,
 				2D3402691FE43DC2002399CA /* GetDictionary.cpp in Sources */,
 				2D0FF4861FDF2680005C458B /* main.cpp in Sources */,
+				2D3BCB84201A1A0A00F38A4C /* D_Huffman.cpp in Sources */,
 				2D778B931FE71F190058F109 /* OpenFile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

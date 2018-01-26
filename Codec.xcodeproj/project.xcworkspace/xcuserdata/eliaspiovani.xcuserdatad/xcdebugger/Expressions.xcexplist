@@ -3,6 +3,22 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "createHfT(char const*, int const&amp;):D_Huffman.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "eHF[i]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "D_Huffman():D_Huffman.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "eHTpl[1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Open(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, std::__1::basic_fstream&lt;char, std::__1::char_traits&lt;char&gt; &gt;&amp;, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;*):OpenFile.cpp">
          <PersistentStrings>
             <PersistentString

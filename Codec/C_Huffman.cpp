@@ -12,8 +12,8 @@ char huffAB[100];
 int hfIndex = 0;
 
 // for saving huffman table for position and length
-string huffCodesPL[10];
-char huffABPL[10];
+string huffCodesPL[11];
+char huffABPL[11];
 string EncodedHTree, EncodedHTree01, EncodedHTree02;
 
 // for saving huffman table for position and length
@@ -154,15 +154,17 @@ bool ReadFile(int& counter, int& mapSizeLenPos, int& mapSizeC)
             // to better differenciate the values from each other, all position has two digits
 //            if (position.length() < 3)
 //            {
-                if (position.length() == 2) positionsChar.push_back('0' + position);
-                else if (position.length() == 1) positionsChar.push_back("00" + position);
-//            }
-            else positionsChar.push_back(position);
-//            positionsChar.push_back(position);
+//                if (position.length() == 2) positionsChar.push_back('0' + position);
+//                else if (position.length() == 1) positionsChar.push_back("00" + position);
+////            }
+//            else positionsChar.push_back(position);
+            positionsChar.push_back(position);
+            positionsChar.push_back(",");
 //
 //            if (length.length() < 2) lengthsChar.push_back('0' + length);
 //            else lengthsChar.push_back(length);
             lengthsChar.push_back(length);
+            lengthsChar.push_back(",");
             
             character = lookAhead;
             
@@ -174,6 +176,8 @@ bool ReadFile(int& counter, int& mapSizeLenPos, int& mapSizeC)
             counter++;
         }
     }
+    retChar = posLenMap.insert(pair<char,int>(',', counter));
+    
     mapSizeLenPos = posLenMap.size();
     mapSizeC = charMap.size();
     huffmanFile.close();
@@ -228,6 +232,7 @@ void writePositionLength(const list<string>& listPL, ofstream& output, const int
     
     for (std::list<string>::const_iterator it=listPL.begin(); it!=listPL.end(); ++it)
     {
+        //cout << *it;
         string temp = *it;
         string temp1, temp2;
         for (int i = 0; i < plHSize; i++) {
@@ -311,6 +316,16 @@ void writeChar(const list<char>& listC,ofstream &output, const int& charHSize)
     if (currentBit != 0) output.write(&buffer, 1);
 }
 
+void writeCount(const int& count, ofstream& output)
+{
+    char buffer = NULL;
+    
+    buffer |= count >> 8;
+    output.write(&buffer, 1);
+    buffer = NULL;
+    buffer |= count;
+    output.write(&buffer, 1);
+}
 
 bool WriteOutput(const int& count, const int& plHSize, const int& charHSize)
 {
@@ -321,18 +336,23 @@ bool WriteOutput(const int& count, const int& plHSize, const int& charHSize)
     // write headers to the file, alphabet and frequencies, and the total count
     
     char charSize = charHSize, plSize = plHSize;
+    //output << count;
     
-    output << '#' << count << '#';
+    writeCount(count, output);
+    //output << '#';
+    
     output.write(&plSize, 1);
     output.write(&charSize, 1);
-    output << '#';
+    //output << '#';
     
     //call function to write the encoded huffman tree generated for position/length and nextChar
     writeHT(EncodedHTree01, output);
     writeHT(EncodedHTree02, output);
     
-    output << '#';
+    //put a terminator after the huffman tree
+    //output << '#';
     
+    //write the codes according to the value of posision/length and nextChar
     writePositionLength(positionsChar, output, plHSize);
     writePositionLength(lengthsChar, output, plHSize);
     
@@ -358,7 +378,7 @@ bool C_Huffman()
     {
         alphabet[i] = it->first;
         freq[i] = it->second;
-        cout << it->first << '\t' << it->second << '\n';
+        //cout << it->first << '\t' << it->second << '\n';
     }
     
     int sizePL = sizeof(alphabet) / sizeof(alphabet[0]);
