@@ -25,10 +25,10 @@ int main() {
     }
     
     // realize the compression of the file
-//    if (!CompressionLZ77(fixedDictLength))
-//    {
-//        return 100;
-//    }
+    if (!CompressionLZ77(fixedDictLength))
+    {
+        return 100;
+    }
     
     //Huffman compression
 //    if (!C_Huffman())
@@ -37,10 +37,10 @@ int main() {
 //    }
     
     //Huffman decompression
-    if (!D_Huffman())
-    {
-        return 500;
-    }
+//    if (!D_Huffman())
+//    {
+//        return 500;
+//    }
     
 //    if (!DecompressionLZ77(fixedDictLength))
 //    {

@@ -66,7 +66,7 @@ bool CompressionLZ77 (const int fixedDictLength)
                 else endOfFile = true;
                 
                 // verify if next character in windown is also equal to the next character in lookahead
-                // 11 is the maximum of sequential characters
+                // until the maximum length for sequential characters
                 for (int i = 0; i < maxLength && it != sWindown.end(); i++) {
                     --it;
                     if (lookAhead == *it && !File.eof()) {

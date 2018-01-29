@@ -131,8 +131,6 @@ void decodeBody(string& body)
     saveToListPL(listLength, body, maxPLccodeLength);
     saveToListnC(listnChar, body, maxCcodeLength);
     
-    //open output and write codes there
-    
     while (!listPosition.empty())
     {
         cout << "(" << listPosition.front()<< "," << listLength.front() << ")" << listnChar.front();
@@ -290,13 +288,12 @@ bool D_Huffman()
         input.read(temp, 1);
         bodyFile += bitset<8>(temp[0]).to_string();
     }
-    input.close();
     
     // decode the body according to the HF codes
     decodeBody(bodyFile);
     
 
-    
+    input.close();
     
     return true;
 }

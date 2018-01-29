@@ -152,17 +152,17 @@ bool ReadFile(int& counter, int& mapSizeLenPos, int& mapSizeC)
             
             // save all the positions to be used later in the creation of the final file
             // to better differenciate the values from each other, all position has two digits
-//            if (position.length() < 3)
-//            {
-//                if (position.length() == 2) positionsChar.push_back('0' + position);
-//                else if (position.length() == 1) positionsChar.push_back("00" + position);
-////            }
-//            else positionsChar.push_back(position);
+            //            if (position.length() < 3)
+            //            {
+            //                if (position.length() == 2) positionsChar.push_back('0' + position);
+            //                else if (position.length() == 1) positionsChar.push_back("00" + position);
+            ////            }
+            //            else positionsChar.push_back(position);
             positionsChar.push_back(position);
             positionsChar.push_back(",");
-//
-//            if (length.length() < 2) lengthsChar.push_back('0' + length);
-//            else lengthsChar.push_back(length);
+            //
+            //            if (length.length() < 2) lengthsChar.push_back('0' + length);
+            //            else lengthsChar.push_back(length);
             lengthsChar.push_back(length);
             lengthsChar.push_back(",");
             
@@ -176,9 +176,6 @@ bool ReadFile(int& counter, int& mapSizeLenPos, int& mapSizeC)
             counter++;
         }
     }
-    positionsChar.push_back(",");
-    lengthsChar.push_back(",");
-    
     retChar = posLenMap.insert(pair<char,int>(',', counter));
     
     mapSizeLenPos = (int)posLenMap.size();
@@ -228,93 +225,67 @@ void writeHT(const string& eHFT, ostream& output)
     
 }
 
-void writePositionLength(char& buffer, int& currentBit, const list<string>& listPL, ofstream& output, const int& plHSize)
+void writePositionLength(const list<string>& listPL, ofstream& output, const int& plHSize)
 {
-    //char buffer = NULL;
-    //int currentBit = 0;
+    char buffer = NULL;
+    int currentBit = 0;
     
     for (std::list<string>::const_iterator it=listPL.begin(); it!=listPL.end(); ++it)
     {
         //cout << *it;
         string temp = *it;
         string temp1, temp2;
-        string tempA[5];
         for (int i = 0; i < plHSize; i++) {
-            
-            for (int j = 0; j < temp.length(); j++) {
-                if (temp[j] == huffABPL[i]) {
-                    tempA[j] = huffCodesPL[i];
-                }
+            if (temp[0] == huffABPL[i]) {
+                temp1 = huffCodesPL[i];
             }
-            
-//            if (temp[0] == huffABPL[i]) {
-//                temp1 = huffCodesPL[i];
-//            }
-//            if (temp[1] == huffABPL[i]) {
-//                temp2 = huffCodesPL[i];
-//            }
+            if (temp[1] == huffABPL[i]) {
+                temp2 = huffCodesPL[i];
+            }
         }
         // write output binary values
         //cout << temp1 << temp2;
-        int length = (int)(sizeof(tempA) / sizeof(tempA[0]));
-        for (int j = 0; j < length; j++) {
-            for (int i = 0; i < tempA[j].length(); i++) {
-                if (tempA[j][i] == '0') {
-                    buffer |= (false << (7 - currentBit));
-                    currentBit++;
-                }
-                else{
-                    buffer |= (true << (7 - currentBit));
-                    currentBit++;
-                }
-                if (currentBit == 8) {
-                    output.write(&buffer, 1);
-                    currentBit = 0;
-                    buffer = NULL;
-                }
+        
+        for (int i = 0; i < temp1.length(); i++) {
+            if (temp1[i] == '0') {
+                buffer |= (false << (7 - currentBit));
+                currentBit++;
+            }
+            else{
+                buffer |= (true << (7 - currentBit));
+                currentBit++;
+            }
+            if (currentBit == 8) {
+                output.write(&buffer, 1);
+                currentBit = 0;
+                buffer = NULL;
             }
         }
-//        for (int i = 0; i < temp1.length(); i++) {
-//            if (temp1[i] == '0') {
-//                buffer |= (false << (7 - currentBit));
-//                currentBit++;
-//            }
-//            else{
-//                buffer |= (true << (7 - currentBit));
-//                currentBit++;
-//            }
-//            if (currentBit == 8) {
-//                output.write(&buffer, 1);
-//                currentBit = 0;
-//                buffer = NULL;
-//            }
-//        }
-//        for (int i = 0; i < temp2.length(); i++) {
-//            if (temp2[i] == '0') {
-//                buffer |= (false << (7 - currentBit));
-//                currentBit++;
-//            }
-//            else{
-//                buffer |= (true << (7 - currentBit));
-//                currentBit++;
-//            }
-//            if (currentBit == 8) {
-//                output.write(&buffer, 1);
-//                currentBit = 0;
-//                buffer = NULL;
-//            }
-//        }
+        for (int i = 0; i < temp2.length(); i++) {
+            if (temp2[i] == '0') {
+                buffer |= (false << (7 - currentBit));
+                currentBit++;
+            }
+            else{
+                buffer |= (true << (7 - currentBit));
+                currentBit++;
+            }
+            if (currentBit == 8) {
+                output.write(&buffer, 1);
+                currentBit = 0;
+                buffer = NULL;
+            }
+        }
         
         //cout << temp1 << temp2;
     }
-    
-    //if (currentBit != 0) output.write(&buffer, 1);
+    if (currentBit != 0) output.write(&buffer, 1);
 }
 
-void writeChar(char& buffer, int& currentBit, const list<char>& listC,ofstream &output, const int& charHSize)
+void writeChar(const list<char>& listC,ofstream &output, const int& charHSize)
 {
-    //char buffer = NULL;
-    //int currentBit = 0;
+    char buffer = NULL;
+    int currentBit = 0;
     for (std::list<char>::const_iterator it=listC.begin(); it!=listC.end(); ++it)
     {
         char temp = *it;
@@ -381,13 +352,11 @@ bool WriteOutput(const int& count, const int& plHSize, const int& charHSize)
     //put a terminator after the huffman tree
     //output << '#';
     
-    char buffer = NULL;
-    int currentBit = 0;
     //write the codes according to the value of posision/length and nextChar
-    writePositionLength(buffer, currentBit, positionsChar, output, plHSize);
-    writePositionLength(buffer, currentBit, lengthsChar, output, plHSize);
+    writePositionLength(positionsChar, output, plHSize);
+    writePositionLength(lengthsChar, output, plHSize);
     
-    writeChar(buffer, currentBit, charsChar, output, charHSize);
+    writeChar(charsChar, output, charHSize);
     
     return true;
 }
